@@ -1,0 +1,40 @@
+:root {
+  --light: #7ed56f;
+  --medium: #55c57a;
+  --dark: #28b485;
+}
+/*
+通用设置
+
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 30px;
+  background: var(--light);
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+}
+.header {
+  height: 95vh;
+  /* height: 900px; */
+  /* height: 95vh; */
+  background-image: linear-gradient(
+      to right,
+      rgba(126, 213, 111, 0.7),
+      rgba(40, 180, 133, 0.7)
+    ),
+    url(../img/hero.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  /* background-size: contain; */
+}
