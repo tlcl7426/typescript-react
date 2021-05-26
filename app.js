@@ -1,48 +1,61 @@
+// let current;
+
 // class Obser {
-//   constructor(name, age) {
-//     this._name = name;
-//     this._age = age;
-//   }
-
-//   get name() {
-//     dep.depend();
-
-//     return this._name;
-//   }
-//   set name(value) {
-//     this._name = value;
-//     dep.notify();
+//   constructor(age, name) {
+//     this.age = age;
+//     this.name = name;
 //   }
 // }
-// for (const it of Object.values(Obser)) {
-
-// }
-// let activeEffect;
 // class Dep {
 //   constructor() {
-//     this.effects = new Set();
+//     this.sub = new Set();
 //   }
 //   depend() {
-//     if (activeEffect) {
-//       this.effects.add(activeEffect);
+//     if (current) {
+//       this.sub.add(current);
 //     }
 //   }
 //   notify() {
-//     this.effects.forEach((effect) => {
-//       effect();
+//     this.sub.forEach((el) => {
+//       el();
+//       console.log(el);
 //     });
 //   }
 // }
-// function watch(effect) {
-//   activeEffect = effect;
-//   effect();
-//   activeEffect = null;
+// let ob = new Obser(1, 2);
+// let omap = new Map();
+// // let de = new Dep();
+// let de = new Dep();
+// function reactive(raw) {
+//   return new Proxy(raw, {
+//     get(target, key) {
+//       de.depend();
+//       return Reflect.get(target, key);
+//     },
+//     set(target, key, value) {
+//       let re = Reflect.set(target, key, value);
+//       // console.log(de);
+//       de.notify();
+
+//       return re;
+//     },
+//   });
 // }
-// let cur;
-// let ob = new Obser(12, 13);
-// let dep = new Dep();
+
+// function watch(effect) {
+//   current = effect;
+//   effect();
+//   current = null;
+// }
+
+// const user = reactive(ob);
+
 // watch(() => {
-//   cur = ob.name + 10;
-//   console.log(cur);
+//   console.log(user.age);
 // });
-// ob.name = 20;
+
+// watch(() => {
+//   console.log(user.name);
+// });
+// user.age = 1;
+// user.name = 3;
